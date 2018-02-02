@@ -1,4 +1,4 @@
-{
+const sampleData = {
   React: {
     title: 'React',
     questions: [
@@ -21,4 +21,6 @@
       }
     ]
   }
-}
+};
+
+export default sampleData;
