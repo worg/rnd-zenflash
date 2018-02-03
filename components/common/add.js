@@ -1,13 +1,17 @@
 import React from 'react';
 import { Platform } from 'react-native';
-import { Button } from 'native-base';
-import { Ionicons } from '@expo/vector-icons';
+import { Button, Icon } from 'native-base';
+
+const iconName = `${Platform.OS === 'ios' ? 'ios' : 'md'}-add`;
 
 const Add = (props) => {
-  const iconName = `${Platform.OS === 'ios' ? 'ios' : 'md'}-add-circle`;
   return (
-    <Button small transparent {...props} >
-      <Ionicons style={{margin: 3}} name={iconName}  size={28} />
+    <Button
+      small
+      transparent
+      primary
+      {...props} >
+      <Icon name={iconName}  fontSize={28} />
     </Button>
   );
 };
