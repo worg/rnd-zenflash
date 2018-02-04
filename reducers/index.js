@@ -1,6 +1,5 @@
 import {
   HYDRATE,
-  LIST_DECKS,
   ADD_DECK,
   ADD_QUESTION,
 } from '../actions/types';
@@ -9,13 +8,10 @@ const ACTION_HANDLERS = {
   [HYDRATE]: (state, action) => {
     return Object.assign({}, state, action.state);
   },
-  [LIST_DECKS]:(state,action) => {
-
+  [ADD_DECK]:(state, action) => {
+    return Object.assign({}, state, action.deck);
   },
-  [ADD_DECK]:(state,action) => {
-
-  },
-  [ADD_QUESTION]:(state,action) => {
+  [ADD_QUESTION]:(state, action) => {
 
   },
 };

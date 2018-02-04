@@ -1,6 +1,5 @@
-import React from 'react';
 import { StackNavigator } from 'react-navigation';
-import Deck from './components/deck';
+import Deck, { AddDeck } from './components/deck';
 import Card from './components/card';
 import Quiz from './components/quiz';
 
@@ -22,6 +21,12 @@ const Navigator = StackNavigator({
     navigationOptions: { 
       title: 'Quiz',
     }
+  },
+  AddDeck: {
+    screen: AddDeck,
+    navigationOptions: {
+      title: 'Add Deck',
+    },
   },
 });
 

@@ -1,10 +1,24 @@
 import { AsyncStorage } from 'react-native';
 import { DECKS_STORAGE_KEY } from './constants';
 import sampleData from '../utils/sampledata';
+import { v1 } from 'uuid';
+
+// Storage helper
+const storage = {
+  get(key) {
+    return AsyncStorage.getItem(key)
+            .then(JSON.parse);
+  },
+  merge(key, value) {
+    return AsyncStorage.mergeItem(key, JSON.stringify(value));
+  },
+  set(key, value) {
+    return AsyncStorage.setItem(key, JSON.stringify(value));
+  },
+};
 
 export const listDecks = () => {
-  return AsyncStorage.getItem(DECKS_STORAGE_KEY)
-          .then(JSON.parse)
+  return storage.get(DECKS_STORAGE_KEY)
           .then(r => {
             if (r !== null) {
               return r;
@@ -17,4 +31,21 @@ export const listDecks = () => {
             );
             return sampleData;
           });
+};
+
+
+const createDeck = (title) => {
+  const id = v1();
+  return {
+    [id]: {
+      id,
+      title,
+      questions: [],
+    }
+  };
+};
+
+export const addDeck = (title) => {
+  const deck = createDeck(title);
+  return storage.merge(DECKS_STORAGE_KEY, deck).then(() => deck);
 };
