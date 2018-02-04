@@ -1,5 +1,6 @@
 const sampleData = {
-  React: {
+  '43fda7e9-7462-46c5-a32b-f89c11300466': {
+    id: '43fda7e9-7462-46c5-a32b-f89c11300466',
     title: 'React',
     questions: [
       {
@@ -12,7 +13,8 @@ const sampleData = {
       }
     ]
   },
-  JavaScript: {
+  '9088c0f9-b5e2-4eb9-9a64-798a25b197dc': {
+    id: '9088c0f9-b5e2-4eb9-9a64-798a25b197dc',
     title: 'JavaScript',
     questions: [
       {
