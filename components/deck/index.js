@@ -6,6 +6,9 @@ import {
   List, 
   ListItem,
   Text,
+  Body,
+  Badge,
+  Right,
 } from 'native-base';
 import AddButton from '../common/add';
 export AddDeck from './add';
@@ -30,7 +33,16 @@ class DeckList extends React.Component {
             button
             renderRow={d => (
               <ListItem onPress={this.toDeck(d)}>
-                <Text>{d.title}</Text>
+                <Body>
+                  <Text>{d.title}</Text>
+                </Body>
+                <Right>
+                  <Badge info>
+                    <Text style={{fontSize: 13}}>
+                      {d.questions.length} cards
+                    </Text>
+                  </Badge>
+                </Right>
               </ListItem>
             )}
             dataArray={Object.values(decks)} />
