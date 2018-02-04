@@ -1,19 +1,35 @@
 import React from 'react';
-import { Platform } from 'react-native';
-import { Button, Icon } from 'native-base';
+import { Platform,
+  View,
+  TouchableNativeFeedback,
+  TouchableOpacity,
+  StyleSheet,
+} from 'react-native';
+import { Icon } from 'native-base';
 
-const iconName = `${Platform.OS === 'ios' ? 'ios' : 'md'}-add`;
-
+const isAndroid = Platform.OS !== 'ios';
+const iconName = `${ !isAndroid ? 'ios' : 'md'}-add`;
+const Touchable = isAndroid ? TouchableNativeFeedback : TouchableOpacity;
 const Add = (props) => {
   return (
-    <Button
-      small
-      transparent
-      primary
+    <Touchable
+      background={isAndroid && TouchableNativeFeedback.Ripple('rgba(0,0,0,.3)', true)}
       {...props} >
-      <Icon name={iconName}  fontSize={28} />
-    </Button>
+      <View style={styles.button}>
+        <Icon
+          style={{color: '#007AFF'}}
+          name={iconName}
+          fontSize={28} />
+      </View>
+    </Touchable>
   );
 };
+
+const styles = StyleSheet.create({
+   button: {
+    marginRight: 10,
+    padding: 4,
+  }
+});
 
 export default Add;
