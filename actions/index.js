@@ -32,8 +32,11 @@ const createQuestion = question => ({
   question,
 });
 
-export const addQuestion = (id, question, answer) => dispatch => {
-  return API.addQuestion(id, question, answer).then(q => dispatch(
-    createQuestion(q)
+export const addQuestion = (id, question, answer) => (dispatch, getState) => {
+  const paramQuestion = { question, answer };
+  const state = getState();
+  const newQuestions = state[id].questions.concat(paramQuestion);
+  return API.addQuestion(id, newQuestions).then(() => dispatch(
+    createQuestion({id, ...paramQuestion})
   ));
 };

@@ -49,3 +49,11 @@ export const addDeck = (title) => {
   const deck = createDeck(title);
   return storage.merge(DECKS_STORAGE_KEY, deck).then(() => deck);
 };
+
+export const addQuestion = (id, questions) => {
+  const deck = {
+    [id]: { questions },
+  };
+
+  return storage.merge(DECKS_STORAGE_KEY, deck).then(() => deck);
+};

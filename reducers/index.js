@@ -12,7 +12,13 @@ const ACTION_HANDLERS = {
     return Object.assign({}, state, action.deck);
   },
   [ADD_QUESTION]:(state, action) => {
-
+    const { id, ...question } = action.question;
+    const deck = state[id];
+    return Object.assign({}, state, {
+      [id]: Object.assign({}, deck, {
+        questions: deck.questions.concat(question),
+      }),
+    });
   },
 };
 

@@ -1,6 +1,6 @@
 import { StackNavigator } from 'react-navigation';
 import Deck, { AddDeck } from './components/deck';
-import Card from './components/card';
+import Card, { AddCard } from './components/card';
 import Quiz from './components/quiz';
 
 const Navigator = StackNavigator({
@@ -29,7 +29,7 @@ const RootNavigation = StackNavigator({
     screen: AddDeck,
   },
   AddCard: {
-    screen: AddDeck,
+    screen: AddCard,
   },
 }, {
   mode: 'modal',
