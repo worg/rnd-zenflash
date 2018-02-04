@@ -13,6 +13,7 @@ const Touchable = isAndroid ? TouchableNativeFeedback : TouchableOpacity;
 const Add = (props) => {
   return (
     <Touchable
+      delayPressIn={0}
       background={isAndroid && TouchableNativeFeedback.Ripple('rgba(0,0,0,.3)', true)}
       {...props} >
       <View style={styles.button}>
