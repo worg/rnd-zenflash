@@ -1,30 +1,9 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import { AppLoading, Font } from 'expo';
-import { StackNavigator } from 'react-navigation';
-import Deck from './components/deck';
-import Card from './components/card';
-import Quiz from './components/quiz';
-
-const Navigator = StackNavigator({
-  Deck: {
-    screen: Deck,
-    navigationOptions: { 
-      title: 'Decks',
-    }
-  },
-  Card: {
-    screen: Card,
-    navigationOptions: { 
-      // title: 'Card',
-    }
-  },
-  Quiz: {
-    screen: Quiz,
-    navigationOptions: { 
-      title: 'Quiz',
-    }
-  },
-});
+import Navigator from './navigation';
+import store from './store';
+import { hydrate } from './actions';
 
 export default class App extends React.PureComponent {
   state = {
@@ -33,9 +12,11 @@ export default class App extends React.PureComponent {
 
   componentWillMount() {
     this.loadFonts();
+    // Hydrate store from async storage
+    hydrate(store.dispatch);
   }
 
-   async loadFonts() {
+  async loadFonts() {
     await Font.loadAsync({
       'Roboto': require('native-base/Fonts/Roboto.ttf'),
       'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
@@ -48,6 +29,10 @@ export default class App extends React.PureComponent {
 
   render() {
     const { hasFonts } = this.state;
-    return hasFonts ? <Navigator /> : <AppLoading />;
+    return (
+      <Provider store={store}>
+        {!hasFonts ? <AppLoading /> : <Navigator />}
+      </Provider>
+    );
   }
 }
