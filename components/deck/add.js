@@ -10,6 +10,7 @@ import {
   Label,
   Text,
 } from 'native-base';
+import ModalHeader from '../common/header';
 import { addDeck } from '../../actions';
 
 class AddDeck extends React.Component {
@@ -26,8 +27,12 @@ class AddDeck extends React.Component {
   };
 
   render() {
+    const { navigation } = this.props;
     return (
       <Container>
+        <ModalHeader
+          onCancel={() => navigation.goBack()}
+          title='Add Deck' />
         <Content padder>
           <Form>
             <Item floatingLabel>

@@ -13,7 +13,6 @@ const Navigator = StackNavigator({
   Card: {
     screen: Card,
     navigationOptions: { 
-      // title: 'Card',
     }
   },
   Quiz: {
@@ -22,12 +21,19 @@ const Navigator = StackNavigator({
       title: 'Quiz',
     }
   },
-  AddDeck: {
-    screen: AddDeck,
-    navigationOptions: {
-      title: 'Add Deck',
-    },
-  },
 });
 
-export default Navigator;
+const RootNavigation = StackNavigator({
+  Main: { screen: Navigator },
+  AddDeck: {
+    screen: AddDeck,
+  },
+  AddCard: {
+    screen: AddDeck,
+  },
+}, {
+  mode: 'modal',
+  headerMode: 'none',
+});
+
+export default RootNavigation;
