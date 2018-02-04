@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
+import { Platform, StyleSheet } from 'react-native';
 import {
   Button,
   Container,
@@ -9,24 +10,27 @@ import {
   View,
   Text,
 } from 'native-base';
+export AddCard from './add';
 
-export default class Card extends React.Component {
+const isAndroid = Platform.OS !== 'ios';
+
+class Card extends React.Component {
   static navigationOptions = ({ navigation: { state } }) => ({
     headerTitle: state.params.title,
   });
 
   addCard = () => {
-    const deck = this.props.navigation.state.params;
+    const { deck } = this.props;
     this.props.navigation.navigate('AddCard', { id:  deck.id });
   };
 
   startQuiz = () => {
-    const deck = this.props.navigation.state.params;
+    const { deck } = this.props;
     this.props.navigation.navigate('Quiz', { ...deck });
   }
 
   render() {
-    const deck = this.props.navigation.state.params;
+    const { deck } = this.props;
     const count = deck.questions.length;
     return (
       <Container>
@@ -41,7 +45,7 @@ export default class Card extends React.Component {
             <Button
               block
               bordered
-              rounded
+              rounded={!isAndroid}
               onPress={this.addCard}
               style={styles.button}>
               <Text>Add Card</Text>
@@ -49,8 +53,10 @@ export default class Card extends React.Component {
             <Button
               block
               primary
-              rounded
+              elevation={3}
+              rounded={!isAndroid}
               disabled={count < 1}
+              delayPressIn={0}
               onPress={this.startQuiz}
               style={styles.button}>
               <Text>Start Quiz</Text>
@@ -81,3 +87,10 @@ const styles = StyleSheet.create({
     margin: 10,
   }
 });
+
+const mapStateToProps = (state, ownProps) => {
+  const deck = ownProps.navigation.state.params;
+  return { deck: state[deck.id] };
+};
+
+export default connect(mapStateToProps)(Card);
