@@ -4,6 +4,7 @@ import { AppLoading, Font } from 'expo';
 import Navigator from './navigation';
 import store from './store';
 import { hydrate } from './actions';
+import { setLocalNotification } from './utils/notifications';
 
 export default class App extends React.PureComponent {
   state = {
@@ -14,6 +15,7 @@ export default class App extends React.PureComponent {
     this.loadFonts();
     // Hydrate store from async storage
     hydrate(store.dispatch);
+    setLocalNotification();
   }
 
   async loadFonts() {

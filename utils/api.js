@@ -4,7 +4,7 @@ import sampleData from '../utils/sampledata';
 import { v1 } from 'uuid';
 
 // Storage helper
-const storage = {
+export const storage = {
   get(key) {
     return AsyncStorage.getItem(key)
             .then(JSON.parse);
@@ -14,6 +14,9 @@ const storage = {
   },
   set(key, value) {
     return AsyncStorage.setItem(key, JSON.stringify(value));
+  },
+  remove(key) {
+    return AsyncStorage.removeItem(key);
   },
 };
 

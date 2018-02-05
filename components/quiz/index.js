@@ -15,6 +15,10 @@ import {
 } from 'native-base';
 import FlipCard from 'react-native-flip-card';
 import ResultsView from './results';
+import {
+  clearLocalNotification,
+  setLocalNotification,
+} from '../../utils/notifications';
 
 export default class QuizView extends React.Component {
   static navigationOptions = ({ navigation: { state } }) => ({
@@ -34,12 +38,14 @@ export default class QuizView extends React.Component {
   }
 
   onReset = () => {
+    this.onComplete();
     this.setState(s => ({
       restart: true,
     }), () => this.setState(this._initialState));
   }
 
   onExit = () => {
+    this.onComplete();
     this.props.navigation.goBack();
   }
 
@@ -70,7 +76,10 @@ export default class QuizView extends React.Component {
     }
 
     // Very quirky/hacky way to flip the component
-    this._flipper.__proto__._toggleCard.call(this._flipper);
+    this._flipper
+      .__proto__
+      ._toggleCard
+      .call(this._flipper);
   }
 
   swipeRight = () => {
@@ -81,6 +90,11 @@ export default class QuizView extends React.Component {
   swipeLeft = () => {
     this._swiper._root.swipeLeft();
     this.handleIncorrect();
+  }
+
+  onComplete = () => {
+    // reschedule reminder
+    clearLocalNotification().then(setLocalNotification);
   }
 
   render() {
