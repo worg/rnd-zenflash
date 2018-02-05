@@ -1,4 +1,5 @@
 import React from 'react';
+import { StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import {
   Container, 
@@ -28,6 +29,7 @@ class DeckList extends React.Component {
     const { decks } = this.props;
     return (
       <Container>
+        <StatusBar barStyle='light-content' />
         <Content>
           <List
             button

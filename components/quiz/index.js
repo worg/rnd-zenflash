@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, StatusBar } from 'react-native';
 import {
   Button,
   Body,
@@ -103,6 +103,7 @@ export default class QuizView extends React.Component {
 
     return (
       <Container>
+        <StatusBar barStyle='light-content' />
         <View style={style.root}>
           <View style={style.container}>
             <H2>{deck.title}</H2>
@@ -203,6 +204,7 @@ const style = StyleSheet.create({
   },
   cardText: {
     textAlign: 'center',
+    color: '#000'
   },
   actionButtons:  {
     flexDirection: 'row',
