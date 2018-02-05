@@ -1,6 +1,8 @@
 {
   "expo": {
     "name": "ZenFlash",
+    "slug": "xyz-worg-udacity-zenflash",
+    "primaryColor": "#607d8b",
     "sdkVersion": "25.0.0"
   }
 }
