@@ -22,9 +22,10 @@ const createDeck = deck => ({
 });
 
 export const addDeck = title => dispatch => {
-  return API.addDeck(title).then(deck => dispatch(
-    createDeck(deck)
-  ));
+  return API.addDeck(title).then(deck => {
+    dispatch(createDeck(deck));
+    return deck;
+  });
 };
 
 const createQuestion = question => ({

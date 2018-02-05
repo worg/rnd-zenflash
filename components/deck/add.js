@@ -21,8 +21,9 @@ class AddDeck extends React.Component {
   handleChange = (deckName) => this.setState({ deckName });
 
   handleSubmit = () => {
-    this.props.addDeck(this.state.deckName).then(() => {
-      this.props.navigation.goBack();
+    this.props.addDeck(this.state.deckName).then(result => {
+      const deck = Object.values(result)[0];
+      this.props.navigation.navigate('Card', { ...deck });
     });
   };
 
