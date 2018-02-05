@@ -10,19 +10,20 @@ import {
   View,
   Text,
 } from 'native-base';
+import AddButton from '../common/add';
 export AddCard from './add';
 
 const isAndroid = Platform.OS !== 'ios';
 
 class Card extends React.Component {
-  static navigationOptions = ({ navigation: { state } }) => ({
-    headerTitle: state.params.title,
+  static navigationOptions = ({ navigation }) => ({
+    headerTitle: navigation.state.params.title,
+    headerRight: (
+      <AddButton onPress={() => navigation.navigate('AddCard', { 
+        id: navigation.state.params.id,
+      })} />
+    ),
   });
-
-  addCard = () => {
-    const { deck } = this.props;
-    this.props.navigation.navigate('AddCard', { id:  deck.id });
-  };
 
   startQuiz = () => {
     const { deck } = this.props;
@@ -42,14 +43,6 @@ class Card extends React.Component {
             {count} cards
           </H2>
           <View style={styles.buttonContainer}>
-            <Button
-              block
-              bordered
-              rounded={!isAndroid}
-              onPress={this.addCard}
-              style={styles.button}>
-              <Text>Add Card</Text>
-            </Button>
             <Button
               block
               primary
