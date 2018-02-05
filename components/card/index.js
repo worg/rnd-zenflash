@@ -35,7 +35,7 @@ class Card extends React.Component {
     const count = deck.questions.length;
     return (
       <Container>
-        <StatusBar barStyle='light-content' />
+      <StatusBar barStyle='light-content' />
         <Content padder contentContainerStyle={styles.container}>
           <H1 style={styles.heading}>
             {deck.title}
