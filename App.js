@@ -1,10 +1,13 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { AppLoading, Font } from 'expo';
+import { StyleProvider } from 'native-base';
 import Navigator from './navigation';
 import store from './store';
 import { hydrate } from './actions';
 import { setLocalNotification } from './utils/notifications';
+import getTheme from './native-base-theme/components';
+import platform from './native-base-theme/variables/platform';
 
 export default class App extends React.PureComponent {
   state = {
@@ -33,7 +36,11 @@ export default class App extends React.PureComponent {
     const { hasFonts } = this.state;
     return (
       <Provider store={store}>
-        {!hasFonts ? <AppLoading /> : <Navigator />}
+        {!hasFonts ? <AppLoading /> : (
+          <StyleProvider style={getTheme(platform)}>
+            <Navigator />
+          </StyleProvider>
+        )}
       </Provider>
     );
   }

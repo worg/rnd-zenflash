@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Platform, StyleSheet } from 'react-native';
+import { Platform, StyleSheet, StatusBar } from 'react-native';
 import {
   Button,
   Container,
@@ -35,6 +35,7 @@ class Card extends React.Component {
     const count = deck.questions.length;
     return (
       <Container>
+        <StatusBar barStyle='light-content' />
         <Content padder contentContainerStyle={styles.container}>
           <H1 style={styles.heading}>
             {deck.title}

@@ -6,6 +6,7 @@ import { Platform,
   StyleSheet,
 } from 'react-native';
 import { Icon } from 'native-base';
+import theme from '../../native-base-theme/variables/platform';
 
 const isAndroid = Platform.OS !== 'ios';
 const iconName = `${ !isAndroid ? 'ios' : 'md'}-add`;
@@ -18,7 +19,7 @@ const Add = (props) => {
       {...props} >
       <View style={styles.button}>
         <Icon
-          style={{color: '#007AFF'}}
+          style={{color: theme.btnPrimaryBg}}
           name={iconName}
           fontSize={28} />
       </View>
