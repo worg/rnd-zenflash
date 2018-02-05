@@ -22,20 +22,20 @@ This starts expo server and outputs a QR to be scanned on the expo app
 
 Run the project and press `i` to start the Simulator
 
-### On Genymotion/Android Emulator
+### On Genymotion/Android Emulator
 
 Start the Genymotion/Android Emulator device.
 Run the project and press `a`.
 
 
-## Platforms Tested
+## Platforms Tested
 
 #### Devices
 
 * Android 6.0 - Motorola XT1563
 * iOS 9.3.5 - iPad 2
 
-### Simulator/Emulator
+#### Simulator/Emulator
 
 * iOS 11.2
 * Android 7.1 - Genymotion
