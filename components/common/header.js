@@ -41,7 +41,7 @@ const ModalHeader = ({ onCancel, title }) => {
         )}
       </Right>
     </Header>
-  )
+  );
 };
 
 const style = StyleSheet.create({

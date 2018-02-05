@@ -18,7 +18,7 @@ export default (variables = variable) => {
 		},
 		paddingVertical: null,
 		paddingHorizontal: null
-	}
+	};
 
 	const cardItemTheme = {
 		'NativeBase.Left': {
